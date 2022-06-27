@@ -7,7 +7,7 @@
 		WindowState="Normal" 
         x:Class="NasBI.MainWindow"
         Title="NasBI">
-	<Grid>
+	<Grid Margin="15">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="480"></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>

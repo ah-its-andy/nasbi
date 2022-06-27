@@ -5,13 +5,14 @@
              mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="480"
              x:Class="NasBI.Components.ServerAliveComponent">
 
-	<Grid>
-		<DataGrid Name="ServerAliveDataGrid" Items="{Binding ServerAlives}" AutoGenerateColumns="False" >
+	<StackPanel>
+		<Rectangle Fill="Gray" Height="1"></Rectangle>
+		<DataGrid Name="ServerAliveDataGrid" Items="{Binding ServerAlives}" AutoGenerateColumns="False" Margin="5,10,5,5">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="ServerName" Binding="{Binding ServerName}"/>
 				<DataGridTextColumn Header="State" Binding="{Binding State}"/>
 			</DataGrid.Columns>
 		</DataGrid>
-	</Grid>
+	</StackPanel>
 	
 </UserControl>

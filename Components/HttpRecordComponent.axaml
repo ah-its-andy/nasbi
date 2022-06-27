@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="NasBI.Components.HttpRecordComponent">
-	<Grid>
-		<DataGrid  Items="{Binding HttpLogs}" AutoGenerateColumns="False" >
+	<StackPanel>
+		<Rectangle Fill="Black" Height="1"></Rectangle>
+		<DataGrid  Items="{Binding HttpLogs}" AutoGenerateColumns="False"  Margin="5,10,5,5">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Path" Binding="{Binding Path}"/>
 				<DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
 				<DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
 			</DataGrid.Columns>
 		</DataGrid>
-	</Grid>
+	</StackPanel>
 </UserControl>

@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Threading;
 using NasBI.Common;
 using System;
 using System.Collections.Generic;
@@ -60,13 +61,18 @@ namespace NasBI.Components
             request.RequestUri = new Uri(config.UnraidServerHealthCheckUrl);
             
             var resp = await HttpInvoker.InvokeAsync(Guid.NewGuid().ToString(), request);
-            if(resp.IsSuccessStatusCode)
+            await Dispatcher.UIThread.InvokeAsync(() =>
             {
-                DataSource.UnraidState.State = "online";
-            } else
-            {
-                DataSource.UnraidState.State = "offline";
-            }
+                if (resp.IsSuccessStatusCode)
+                {
+                    DataSource.UnraidState.State = "online";
+                }
+                else
+                {
+                    DataSource.UnraidState.State = "offline";
+                }
+            });
+           
         }
 
         private async Task FetchTruenasAsync()
@@ -78,14 +84,17 @@ namespace NasBI.Components
             request.RequestUri = new Uri(config.TruenasServerHealthCheckUrl);
 
             var resp = await HttpInvoker.InvokeAsync(Guid.NewGuid().ToString(), request);
-            if (resp.IsSuccessStatusCode)
+            await Dispatcher.UIThread.InvokeAsync(() =>
             {
-                DataSource.TruenasState.State = "online";
-            }
-            else
-            {
-                DataSource.TruenasState.State = "offline";
-            }
+                if (resp.IsSuccessStatusCode)
+                {
+                    DataSource.TruenasState.State = "online";
+                }
+                else
+                {
+                    DataSource.TruenasState.State = "offline";
+                }
+            });
         }
 
 
@@ -108,7 +117,7 @@ namespace NasBI.Components
             set
             {
                 state = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(State));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(State)));
             }
         }
 
