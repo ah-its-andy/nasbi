@@ -39,7 +39,7 @@ namespace NasBI.Common
             await ModifyHttpLog(new HttpActionModel
             {
                 Identifier = identifier,
-                Status = resp.StatusCode.ToString(),
+                Status = $"({(int)resp.StatusCode}){resp.StatusCode.ToString()}",
                 Duration = $"{sw.Elapsed.TotalMilliseconds}ms"
             });
             return resp;
