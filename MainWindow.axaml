@@ -2,8 +2,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:components="clr-namespace:NasBI.Components;assembly=NasBI"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="480"
+		WindowState="Normal" 
         x:Class="NasBI.MainWindow"
         Title="NasBI">
-    Welcome to Avalonia!
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="480"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Grid.Column="0">
+			<components:ServerAliveComponent></components:ServerAliveComponent>
+			<components:HttpRecordComponent></components:HttpRecordComponent>
+		</StackPanel>
+		
+	</Grid>
 </Window>
